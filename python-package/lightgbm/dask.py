@@ -127,7 +127,7 @@ def _concat(seq: List[_DaskPart]) -> _DaskPart:
     if isinstance(seq[0], np.ndarray):
         return np.concatenate(seq, axis=0)
     elif isinstance(seq[0], (pd_DataFrame, pd_Series)):
-        return concat(seq, axis=0)
+        return concat(seq, axis=0, copy=False)
     elif isinstance(seq[0], ss.spmatrix):
         return ss.vstack(seq, format='csr')
     else:
